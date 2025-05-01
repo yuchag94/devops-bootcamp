@@ -1,12 +1,26 @@
 # 🚀 DevOps Bootcamp con Yuliet Chavarria
 
-Bienvenida a mi espacio de práctica como futura **DevOps Engineer**.  
-Aquí estoy documentando mi progreso, clases, retos y scripts mientras aprendo todo sobre el mundo DevOps.
+Bienvenida a mi bitácora personal de aprendizaje para convertirme en una **DevOps Engineer profesional**.  
+Aquí documento todos mis avances diarios con prácticas reales, herramientas modernas y contenedores listos para producción.
 
+---
 
-## 🙋‍♀️ Sobre mí
+## 📚 ¿Qué he aprendido hasta ahora?
 
-Me llamo **Yuliet**, y este repositorio refleja mi compromiso por convertirme en una excelente ingeniera DevOps 🚀  
-¡Vamos paso a paso, pero con fuerza y constancia! 💪
+- ✅ Comandos básicos de Linux (navegación, permisos, scripting)
+- ✅ Variables, condicionales, bucles y funciones en bash
+- ✅ Uso de Git y GitHub para versionar proyectos
+- ✅ Uso de Docker para ejecutar contenedores
+- ✅ Creación de imágenes personalizadas con `Dockerfile`
+- ✅ Publicación de contenedores en Docker Hub
+
+---
+
+## 🐳 Imagen destacada del día
+
+🎯 ¡Mi primer contenedor real ejecutando un script personalizado!
+
+```bash
+docker run -it yuchag05/script-logica:1.0
 
 ## Te amo novia 🐢❤️
