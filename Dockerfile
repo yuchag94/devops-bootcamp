@@ -1,13 +1,10 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
-LABEL maintainer="yuliet@devops.com"
-
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt update && apt install -y bash
+RUN apt-get update && \
+    apt-get install -y mysql-client bash && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY script-logica.sh /script-logica.sh
-
 RUN chmod +x /script-logica.sh
 
-CMD ["/script-logica.sh"]
+ENTRYPOINT ["/script-logica.sh"]
