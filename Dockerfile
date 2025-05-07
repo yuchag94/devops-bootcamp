@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu
 
 RUN apt-get update && \
     apt-get install -y mysql-client bash && \
@@ -7,4 +7,4 @@ RUN apt-get update && \
 COPY script-logica.sh /script-logica.sh
 RUN chmod +x /script-logica.sh
 
-ENTRYPOINT ["/script-logica.sh"]
+CMD ["/script-logica.sh"]

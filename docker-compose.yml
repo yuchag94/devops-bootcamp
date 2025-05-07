@@ -6,20 +6,28 @@ services:
     container_name: script-logica
     depends_on:
       - db
-    tty: true  # permite entrada interactiva
+    networks:
+      - dev-net
+    tty: true
     stdin_open: true
 
   db:
     image: mysql:8.0
     platform: linux/amd64
     container_name: mysql-devops
-    volumes:
-      - mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: devops_db
     ports:
       - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - dev-net
 
 volumes:
   mysql-data:
+
+networks:
+  dev-net:
+    driver: bridge
