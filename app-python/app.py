@@ -1,44 +1,67 @@
+
 from flask import Flask, request, jsonify
 import mysql.connector
-import os
-from datetime import datetime
 
 app = Flask(__name__)
 
-db_config = {
-    'host': os.environ.get('MYSQL_HOST', 'db'),
-    'user': os.environ.get('MYSQL_USER', 'root'),
-    'password': os.environ.get('MYSQL_PASSWORD', 'rootpass'),
-    'database': os.environ.get('MYSQL_DATABASE', 'devops_db')
-}
+def conectar_db():
+    return mysql.connector.connect(
+        host="mysql-devops",  # nombre del contenedor
+        user="root",
+        password="rootpass",
+        database="devops_db"
+    )
 
 @app.route('/alumnos', methods=['GET'])
-def get_alumnos():
-    conn = mysql.connector.connect(**db_config)
-    cursor = conn.cursor()
-    cursor.execute("SELECT id, nombre, fecha_ingreso FROM alumnos")
+def obtener_alumnos():
+    conn = conectar_db()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM alumnos")
     alumnos = cursor.fetchall()
     cursor.close()
     conn.close()
-    return jsonify([
-        {"id": row[0], "nombre": row[1], "fecha_ingreso": str(row[2])}
-        for row in alumnos
-    ])
+    return jsonify(alumnos)
 
 @app.route('/alumnos', methods=['POST'])
-def create_alumno():
-    data = request.get_json()
-    nombre = data.get('nombre', 'Desconocido')
-    conn = mysql.connector.connect(**db_config)
+def agregar_alumno():
+    data = request.json
+    conn = conectar_db()
     cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO alumnos (nombre, fecha_ingreso) VALUES (%s, %s)",
-        (nombre, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    )
+    cursor.execute("INSERT INTO alumnos (nombre) VALUES (%s)", (data['nombre'],))
+    conn.commit()
+    id_nuevo = cursor.lastrowid
+    cursor.close()
+    conn.close()
+    return jsonify({"mensaje": f"Alumno '{data['nombre']}' registrado correctamente", "id": id_nuevo}), 201
+
+@app.route('/alumnos/<int:id>', methods=['PUT'])
+def actualizar_alumno(id):
+    data = request.json
+    conn = conectar_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM alumnos WHERE id = %s", (id,))
+    alumno = cursor.fetchone()
+    if not alumno:
+        return jsonify({"error": "Alumno no encontrado"}), 404
+    cursor.execute("UPDATE alumnos SET nombre = %s WHERE id = %s", (data['nombre'], id))
     conn.commit()
     cursor.close()
     conn.close()
-    return jsonify({"mensaje": f"Alumno '{nombre}' registrado correctamente"}), 201
+    return jsonify({"mensaje": f"Alumno con id {id} actualizado correctamente"})
+
+@app.route('/alumnos/<int:id>', methods=['DELETE'])
+def eliminar_alumno(id):
+    conn = conectar_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM alumnos WHERE id = %s", (id,))
+    alumno = cursor.fetchone()
+    if not alumno:
+        return jsonify({"error": "Alumno no encontrado"}), 404
+    cursor.execute("DELETE FROM alumnos WHERE id = %s", (id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return jsonify({"mensaje": f"Alumno con id {id} eliminado correctamente"})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build: .
@@ -32,6 +30,7 @@ services:
       - ./respaldo:/respaldo
     networks:
       - dev-net
+
   app-python:
     build: ./app-python
     depends_on:
