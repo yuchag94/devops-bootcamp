@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # Configura la conexión usando las variables de Railway
 config = {
-    'host': 'mysql.railway.internal',
+    'host': 'mysql://root:yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL@tramway.proxy.rlwy.net:59274/railway',
     'user': 'root',
     'password': 'yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL',
     'database': 'railway',
