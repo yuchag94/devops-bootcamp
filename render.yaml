@@ -11,7 +11,7 @@ services:
     healthCheckPath: /
     envVars:
       - key: MYSQLHOST
-        value: tramway.proxy.rlwy.net
+        value: mysql://root:JdZwbqFXBnbKusRBbkVZPsDcqMUPFKQl@yamabiko.proxy.rlwy.net:30531/railway
       - key: MYSQLUSER
         value: root
       - key: MYSQLPASSWORD
