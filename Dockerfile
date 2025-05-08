@@ -1,10 +1,12 @@
-FROM ubuntu
+FROM python:3.11-slim
 
-RUN apt-get update && \
-    apt-get install -y mysql-client bash && \
-    rm -rf /var/lib/apt/lists/*
+WORKDIR /app
 
-COPY script-logica.sh /script-logica.sh
-RUN chmod +x /script-logica.sh
+COPY app-python/requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["/script-logica.sh"]
+COPY app-python/. .
+
+EXPOSE 10000
+
+CMD ["python", "app.py"]
