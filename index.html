@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Vehículo - TRACOL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0B1C2C;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-container {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .logo-container img {
+            max-width: 280px;
+            height: auto;
+            display: block;
+        }
+
+        .form-container {
+            background-color: #0E2C44;
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            margin: 30px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .form-container h2 {
+            color: #F5A623;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border: none;
+            border-radius: 6px;
+        }
+
+        button {
+            background-color: #F5A623;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #e39317;
+        }
+
+        @media (max-width: 500px) {
+            .form-container {
+                padding: 20px;
+            }
+
+            .logo-container img {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo_tracol.png" alt="Logo Tracol">
+    </div>
+    <div class="form-container">
+        <h2>Registrar Vehículo</h2>
+        <form>
+            <label for="tarjeta">Tarjeta de Propiedad</label>
+            <input type="text" id="tarjeta" name="tarjeta" required>
+
+            <label for="soat">SOAT</label>
+            <input type="text" id="soat" name="soat" required>
+
+            <label for="poliza">Póliza Todo Riesgo</label>
+            <input type="text" id="poliza" name="poliza" required>
+
+            <label for="revision">Revisión Tecnomecánica</label>
+            <input type="date" id="revision" name="revision" required>
+
+            <label for="gps">Estado del GPS</label>
+            <input type="text" id="gps" name="gps" required>
+
+            <label for="clave_gps">Clave GPS</label>
+            <input type="text" id="clave_gps" name="clave_gps" required>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+</body>
+</html>
