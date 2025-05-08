@@ -11,12 +11,12 @@ services:
     healthCheckPath: /
     envVars:
       - key: MYSQLHOST
-        value: mysql://root:JdZwbqFXBnbKusRBbkVZPsDcqMUPFKQl@yamabiko.proxy.rlwy.net:30531/railway
+        value: yamabiko.proxy.rlwy.net
       - key: MYSQLUSER
         value: root
       - key: MYSQLPASSWORD
-        value: yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL
+        value: JdZwbqFXBnbKusRBbkVZPsDcqMUPFKQl
       - key: MYSQLDATABASE
-        value: gestion_vehicular
+        value: railway
       - key: MYSQLPORT
-        value: "59274"
+        value: "30531"

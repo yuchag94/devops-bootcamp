@@ -1,53 +1,32 @@
-services:
-  app:
-    build: .
-    container_name: script-logica
-    depends_on:
-      - db
-    networks:
-      - dev-net
-    tty: true
-    stdin_open: true
+version: '3.8'
 
-  db:
+services:
+  mysql:
     image: mysql:8.0
-    platform: linux/amd64
     container_name: mysql-devops
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: devops_db
+      MYSQL_DATABASE: gestion_vehicular
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminpass
     ports:
       - "3306:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - dev-net
-  backup:
-    build: ./backup-service
-    depends_on:
-      - db
-    volumes:
-      - ./respaldo:/respaldo
-    networks:
-      - dev-net
+      - dbdata:/var/lib/mysql
 
-  app-python:
-    build: ./app-python
-    depends_on:
-      - db
-    environment:
-      MYSQL_HOST: db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: rootpass
-      MYSQL_DATABASE: devops_db
-    networks:
-      - dev-net
+  app:
+    build: .
+    container_name: app-python
     ports:
-      - "5001:5000"
+      - "5000:5000"
+    depends_on:
+      - mysql
+    environment:
+      MYSQLHOST: mysql
+      MYSQLUSER: admin
+      MYSQLPASSWORD: adminpass
+      MYSQLDATABASE: gestion_vehicular
+      MYSQLPORT: 3306
 
 volumes:
-  mysql-data:
-
-networks:
-  dev-net:
-    driver: bridge
+  dbdata:
