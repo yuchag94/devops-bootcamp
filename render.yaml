@@ -13,10 +13,12 @@ services:
       - key: PORT
         value: 10000
       - key: MYSQL_HOST
-        value: tu-host-remoto
+        value: mysql://root:yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL@tramway.proxy.rlwy.net:59274/railway
       - key: MYSQL_USER
         value: root
       - key: MYSQL_PASSWORD
-        value: rootpass
+        value: yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL
       - key: MYSQL_DATABASE
-        value: devops_db
+        value: gestion_vehicular
+      - key: MYSQL_PORT
+        value: "59274"
