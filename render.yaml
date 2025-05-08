@@ -10,15 +10,13 @@ services:
     startCommand: "python app.py"
     healthCheckPath: /
     envVars:
-      - key: PORT
-        value: 10000
-      - key: MYSQL_HOST
-        value: mysql://root:yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL@tramway.proxy.rlwy.net:59274/railway
-      - key: MYSQL_USER
+      - key: MYSQLHOST
+        value: tramway.proxy.rlwy.net
+      - key: MYSQLUSER
         value: root
-      - key: MYSQL_PASSWORD
+      - key: MYSQLPASSWORD
         value: yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL
-      - key: MYSQL_DATABASE
+      - key: MYSQLDATABASE
         value: gestion_vehicular
-      - key: MYSQL_PORT
+      - key: MYSQLPORT
         value: "59274"

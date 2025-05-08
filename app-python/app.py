@@ -13,6 +13,8 @@ config = {
     'port': int(os.getenv('MYSQLPORT'))
 }
 
+print("Configuración leída desde entorno:", config)
+
 conexion = mysql.connector.connect(**config)
 
 # HOME
