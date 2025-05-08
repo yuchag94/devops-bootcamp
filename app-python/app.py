@@ -27,7 +27,7 @@ def agregar_vehiculo():
             data['poliza'],
             data['revision'],
             data['gps'],
-            data['gps_password']
+            data['clave_gps']
         ))
         conn.commit()
         return jsonify({"mensaje": "Vehículo agregado"}), 201
