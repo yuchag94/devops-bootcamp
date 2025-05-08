@@ -32,6 +32,19 @@ services:
       - ./respaldo:/respaldo
     networks:
       - dev-net
+  app-python:
+    build: ./app-python
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootpass
+      MYSQL_DATABASE: devops_db
+    networks:
+      - dev-net
+    ports:
+      - "5001:5000"
 
 volumes:
   mysql-data:
