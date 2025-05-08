@@ -5,10 +5,13 @@ services:
     repo: https://github.com/yuchag94/devops-bootcamp
     plan: free
     branch: main
-    dockerfilePath: ./app-python/Dockerfile
+    dockerfilePath: ./Dockerfile
     buildCommand: ""
     startCommand: "python app.py"
+    healthCheckPath: /
     envVars:
+      - key: PORT
+        value: 10000
       - key: MYSQL_HOST
         value: tu-host-remoto
       - key: MYSQL_USER
