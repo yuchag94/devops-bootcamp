@@ -6,11 +6,11 @@ app = Flask(__name__)
 
 # Configura la conexión usando las variables de Railway
 config = {
-    'host': 'tramway.proxy.rlwy.net',
-    'user': 'root',
-    'password': 'yLaNXNWGkUGayEvHDtQEmdOjfvLcRqpL',
-    'database': 'gestion_vehicular',
-    'port': 59274
+    'host': os.getenv('MYSQLHOST'),
+    'user': os.getenv('MYSQLUSER'),
+    'password': os.getenv('MYSQLPASSWORD'),
+    'database': os.getenv('MYSQLDATABASE'),
+    'port': int(os.getenv('MYSQLPORT', 3306))
 }
 
 # HOME
