@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: api-devops
+    env: docker
+    repo: https://github.com/yuchag94/devops-bootcamp
+    plan: free
+    branch: main
+    dockerfilePath: ./app-python/Dockerfile
+    buildCommand: ""
+    startCommand: "python app.py"
+    envVars:
+      - key: MYSQL_HOST
+        value: tu-host-remoto
+      - key: MYSQL_USER
+        value: root
+      - key: MYSQL_PASSWORD
+        value: rootpass
+      - key: MYSQL_DATABASE
+        value: devops_db
